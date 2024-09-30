@@ -86,16 +86,15 @@ class TopReferrersListWidget extends ChartWidget
     }
     public function refreshChart($params)
     {
-        Log::debug('refreshChart');
-        Log::debug(print_r($params, true));
+
         $this->propertyId = $params['propertyId'];
-        Log::debug($this->propertyId);
+
         $this->getData(); // or whatever method you use to get the chart data
         $this->render();
         // Re-render the widget's DOM
-        $this->dispatch('wire:loading');
+    //    $this->dispatch('wire:loading');
         // ... do some work ...
-        $this->dispatch('wire:loading.remove');
+     //   $this->dispatch('wire:loading.remove');
     }
 
 
