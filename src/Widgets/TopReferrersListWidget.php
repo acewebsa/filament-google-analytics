@@ -84,9 +84,10 @@ class TopReferrersListWidget extends ChartWidget
     {
         return 'line';
     }
-    public function refreshChart()
+    public function refreshChart($params)
     {
         Log::debug('refreshChart');
+        Log::debug(print_r($params, true));
         Log::debug($this->propertyId);
         $this->getData(); // or whatever method you use to get the chart data
         $this->render();
