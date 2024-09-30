@@ -20,7 +20,7 @@ class PageViewsWidget extends ChartWidget
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
-
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
     public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.page_views');

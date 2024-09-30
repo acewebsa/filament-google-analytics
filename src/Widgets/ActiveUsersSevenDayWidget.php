@@ -21,7 +21,7 @@ class ActiveUsersSevenDayWidget extends ChartWidget
     protected static ?int $sort = 3;
 
     public ?string $filter = '5';
-
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
     protected function getType(): string
     {
         return 'line';

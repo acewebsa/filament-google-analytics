@@ -19,7 +19,7 @@ class SessionsByDeviceWidget extends ChartWidget
     protected static ?string $pollingInterval = null;
 
     protected static ?int $sort = 3;
-
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
     public ?string $total = null;
 
     public ?string $filter = 'T';

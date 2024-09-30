@@ -24,7 +24,7 @@ class SessionsByCountryWidget extends ChartWidget
     public ?string $total = null;
 
     public ?string $filter = 'T';
-
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
     public string $category = 'country';
 
     protected function getType(): string
