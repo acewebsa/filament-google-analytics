@@ -1,5 +1,5 @@
 {
-    "name": "bezhansalleh/filament-google-analytics",
+    "name": "acewebsa/filament-google-analytics",
     "description": "Google Analytics integration with Filamentphp (FilamentAdmin)",
     "keywords": [
         "bezhanSalleh",
@@ -13,7 +13,7 @@
         "php",
         "livewire"
     ],
-    "homepage": "https://github.com/bezhansalleh/filament-google-analytics",
+    "homepage": "https://github.com/acewebsa/filament-google-analytics",
     "license": "MIT",
     "authors": [
         {
