@@ -20,7 +20,12 @@ class TopReferrersListWidget extends ChartWidget
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
+    public $propertyId; // New property for propertyId
 
+    public function mount($propertyId)
+    {
+        $this->propertyId = $propertyId; // Assign the dynamic propertyId
+    }
     public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.top_referrers');
@@ -44,14 +49,14 @@ class TopReferrersListWidget extends ChartWidget
             'TM' => Period::months(1),
             'TY' => Period::years(1),
         ];
-
-        $analyticsData = Analytics::get(
+        $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
             $lookups[$this->filter],
             ['activeUsers'],
             ['pageReferrer'],
             10,
-            [OrderBy::dimension('activeUsers', true)],
+            [OrderBy::dimension('activeUsers', true)]
         );
+
 
         return $analyticsData->map(function (array $pageRow) {
             return [
