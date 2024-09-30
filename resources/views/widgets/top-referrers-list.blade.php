@@ -4,7 +4,7 @@
     $heading = $this->getHeading();
 @endphp
 
-<div  wire:reload="propertyId" class="fi-wi-stats-overview-card relative rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10">
+<div  wire:reload.live="propertyId" class="fi-wi-stats-overview-card relative rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-950/5 dark:bg-gray-900 dark:ring-white/10">
     <div class="grid gap-y-4">
         <div class="flex items-center gap-x-2">
             <span class="text-lg font-semibold text-gray-500 dark:text-gray-100">

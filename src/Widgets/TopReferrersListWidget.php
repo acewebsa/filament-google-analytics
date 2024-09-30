@@ -13,7 +13,7 @@ class TopReferrersListWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
 
-    protected static ?string $pollingInterval = null;
+    protected static ?string $pollingInterval = '10s';
 
     protected static string $view = 'filament-google-analytics::widgets.top-referrers-list';
 
@@ -83,6 +83,10 @@ class TopReferrersListWidget extends ChartWidget
     {
         return 'line';
     }
+    public function refreshChart()
+    {
+        $this->chartData = $this->getData(); // or whatever method you use to get the chart data
+    }
 
-    protected $listeners = ['updatePropertyId' => '$refresh'];
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
 }
