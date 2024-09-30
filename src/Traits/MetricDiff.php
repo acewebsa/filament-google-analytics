@@ -16,7 +16,21 @@ trait MetricDiff
             [$metric],
             [$dimensions],
         );
-
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
+                $period,
+                [$metric],
+                [$dimensions],
+            );
+        }
+        else
+        {
+            $analyticsData = Analytics::get(
+                $period,
+                [$metric],
+                [$dimensions],
+            );
+        }
         $results = $analyticsData;
 
         return collect($results ?? [])->map(function (array $dateRow) use ($metric, $dimensions) {

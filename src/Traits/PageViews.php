@@ -13,7 +13,13 @@ trait PageViews
     private function pageViewsToday(): array
     {
         $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(1));
-
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->fetchTotalVisitorsAndPageViews(Period::days(1));
+        }
+        else
+        {
+            $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::days(1));
+        }
         return [
             'result' => $analyticsData->last()['screenPageViews'] ?? 0,
             'previous' => $analyticsData->first()['screenPageViews'] ?? 0,
@@ -22,7 +28,13 @@ trait PageViews
 
     private function pageViewsYesterday(): array
     {
-        $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
+        }
+        else
+        {
+            $analyticsData = Analytics::fetchTotalVisitorsAndPageViews(Period::create(Carbon::yesterday()->clone()->subDay(), Carbon::yesterday()));
+        }
 
         return [
             'result' => $analyticsData->last()['screenPageViews'] ?? 0,
