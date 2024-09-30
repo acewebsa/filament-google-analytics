@@ -20,7 +20,7 @@ class TopReferrersListWidget extends ChartWidget
     protected static ?int $sort = 3;
 
     public ?string $filter = 'T';
-    public $propertyId; // New property for propertyId
+    public $propertyId = null; // New property for propertyId
 
 
     public function getHeading(): string | Htmlable | null
@@ -46,13 +46,26 @@ class TopReferrersListWidget extends ChartWidget
             'TM' => Period::months(1),
             'TY' => Period::years(1),
         ];
-        $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
-            $lookups[$this->filter],
-            ['activeUsers'],
-            ['pageReferrer'],
-            10,
-            [OrderBy::dimension('activeUsers', true)]
-        );
+        // Check if the $propertyId is set
+        if ($this->propertyId) {
+            // Use the dynamic propertyId
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
+                $lookups[$this->filter],
+                ['activeUsers'],
+                ['pageReferrer'],
+                10,
+                [OrderBy::dimension('activeUsers', true)]
+            );
+        } else {
+            // Use the default method without setting propertyId
+            $analyticsData = Analytics::get(
+                $lookups[$this->filter],
+                ['activeUsers'],
+                ['pageReferrer'],
+                10,
+                [OrderBy::dimension('activeUsers', true)]
+            );
+        }
 
 
         return $analyticsData->map(function (array $pageRow) {
