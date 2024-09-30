@@ -89,6 +89,10 @@ class TopReferrersListWidget extends ChartWidget
         Log::debug('refreshChart');
         $this->getData(); // or whatever method you use to get the chart data
         $this->render();
+        // Re-render the widget's DOM
+        $this->dispatch('wire:loading');
+        // ... do some work ...
+        $this->dispatch('wire:loading.remove');
     }
 
 
