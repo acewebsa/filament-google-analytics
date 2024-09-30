@@ -22,7 +22,10 @@ class TopReferrersListWidget extends ChartWidget
     public ?string $filter = 'T';
     public $propertyId = null; // New property for propertyId
 
-
+    public function mount($propertyId = null): void
+    {
+        $this->propertyId = $propertyId;
+    }
     public function getHeading(): string | Htmlable | null
     {
         return __('filament-google-analytics::widgets.top_referrers');
