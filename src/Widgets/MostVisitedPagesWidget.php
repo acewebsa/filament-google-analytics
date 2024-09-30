@@ -44,14 +44,26 @@ class MostVisitedPagesWidget extends ChartWidget
             'TM' => Period::months(1),
             'TY' => Period::years(1),
         ];
-
-        $analyticsData = Analytics::get(
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
+                $lookups[$this->filter],
+                ['screenPageViews'],
+                ['pageTitle', 'hostName', 'pagePath'],
+                10,
+                [OrderBy::metric('screenPageViews', true)],
+            );
+        }
+        else
+        {
+            $analyticsData = Analytics::get(
             $lookups[$this->filter],
             ['screenPageViews'],
             ['pageTitle', 'hostName', 'pagePath'],
             10,
             [OrderBy::metric('screenPageViews', true)],
         );
+        }
+
         $headers = [
             'name',
             'hostname',

@@ -88,14 +88,26 @@ class SessionsByCountryWidget extends ChartWidget
                 Carbon::yesterday()
             ),
         ];
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
+                $lookups[$this->filter],
+                ['sessions'],
+                ['country'],
+                10,
+                [OrderBy::metric('sessions', true)],
+            );
+        }
+        else
+        {
+            $analyticsData = Analytics::get(
+                $lookups[$this->filter],
+                ['sessions'],
+                ['country'],
+                10,
+                [OrderBy::metric('sessions', true)],
+            );
+        }
 
-        $analyticsData = Analytics::get(
-            $lookups[$this->filter],
-            ['sessions'],
-            ['country'],
-            10,
-            [OrderBy::metric('sessions', true)],
-        );
 
         $results = [];
         foreach ($analyticsData as $row) {

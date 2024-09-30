@@ -88,12 +88,22 @@ class SessionsByDeviceWidget extends ChartWidget
                 Carbon::yesterday()
             ),
         ];
+        if ($this->propertyId) {
+            $analyticsData = Analytics::setPropertyId($this->propertyId)->get(
+                $lookups[$this->filter],
+                ['sessions'],
+                ['deviceCategory']
+            );
+        }
+        else
+        {
+            $analyticsData = Analytics::get(
+                $lookups[$this->filter],
+                ['sessions'],
+                ['deviceCategory']
+            );
+        }
 
-        $analyticsData = Analytics::get(
-            $lookups[$this->filter],
-            ['sessions'],
-            ['deviceCategory']
-        );
 
         $results = [];
 
