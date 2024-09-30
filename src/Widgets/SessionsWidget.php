@@ -12,7 +12,7 @@ class SessionsWidget extends ChartWidget
 {
     use Traits\Sessions;
     use Traits\CanViewWidget;
-
+    use Traits\ListenForPropertyIdChange;
     protected static ?string $pollingInterval = null;
 
     protected static string $view = 'filament-google-analytics::widgets.stats-overview';

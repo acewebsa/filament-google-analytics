@@ -12,7 +12,7 @@ use Spatie\Analytics\Period;
 class MostVisitedPagesWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
-
+    use Traits\ListenForPropertyIdChange;
     protected static string $view = 'filament-google-analytics::widgets.most-visited-pages';
 
     protected static ?string $pollingInterval = null;

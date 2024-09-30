@@ -13,7 +13,7 @@ class ActiveUsersSevenDayWidget extends ChartWidget
 {
     use Traits\ActiveUsers;
     use Traits\CanViewWidget;
-
+    use Traits\ListenForPropertyIdChange;
     protected static string $view = 'filament-google-analytics::widgets.active-users';
 
     protected static ?string $pollingInterval = null;

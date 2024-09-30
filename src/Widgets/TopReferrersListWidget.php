@@ -87,7 +87,6 @@ class TopReferrersListWidget extends ChartWidget
     public function refreshChart($params)
     {
         $this->propertyId = $params['propertyId'];
-     //   $this->getData();
         $this->render();
     }
 

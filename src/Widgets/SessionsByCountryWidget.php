@@ -14,7 +14,7 @@ use Spatie\Analytics\Period;
 class SessionsByCountryWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
-
+    use Traits\ListenForPropertyIdChange;
     protected static string $view = 'filament-google-analytics::widgets.sessions-by-category';
 
     protected static ?string $pollingInterval = null;
