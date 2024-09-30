@@ -83,4 +83,6 @@ class TopReferrersListWidget extends ChartWidget
     {
         return 'line';
     }
+
+    protected $listeners = ['updatePropertyId' => '$refresh'];
 }
