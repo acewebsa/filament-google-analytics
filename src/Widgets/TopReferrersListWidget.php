@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\OrderBy;
 use Spatie\Analytics\Period;
-
+use Illuminate\Support\Facades\Log;
 class TopReferrersListWidget extends ChartWidget
 {
     use Traits\CanViewWidget;
@@ -22,6 +22,7 @@ class TopReferrersListWidget extends ChartWidget
     public ?string $filter = 'T';
     public $propertyId = null; // New property for propertyId
 
+    protected $listeners = ['updatePropertyId' => 'refreshChart'];
     public function mount($propertyId = null): void
     {
         $this->propertyId = $propertyId;
@@ -85,8 +86,9 @@ class TopReferrersListWidget extends ChartWidget
     }
     public function refreshChart()
     {
+        Log::debug('refreshChart');
         $this->chartData = $this->getData(); // or whatever method you use to get the chart data
     }
 
-    protected $listeners = ['updatePropertyId' => 'refreshChart'];
+
 }
